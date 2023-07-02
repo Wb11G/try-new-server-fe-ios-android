@@ -1,0 +1,70 @@
+name: 🚀 Build App by wahyu 
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "development" branch
+  push:
+    branches: ["master"] # master, development, staging
+  pull_request:
+    branches: ["master"] # master, development, staging
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  SNAPSHOT_VERSION: ${{ format('{0}-SNAPSHOT', github.event.number) }}
+
+jobs:
+  app-deploy:
+    name: 🚚 FrontEnd-Mobile (Build iOS) - coba aja dulu
+    runs-on: linux-wahyu1
+    steps:
+      - name: 🎉 Get latest code
+        uses: actions/checkout@v2
+
+      - name: ✅ Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'  # Change this to match your Flutter version
+
+      - name: Build Android App
+        run: flutter build android --release 
+
+      # - name: Send APK to Backend
+      #   run: |
+      #     curl --insecure --location '${{ secrets.UPLOAD_TARGET_URL }}?version=${{ github.run_number }}' \
+      #       --header 'Authorization: Bearer ${{ secrets.REPORT_BEARER_TOKEN }}' \
+      #       -F "file=@build/app/outputs/flutter-apk/app-release.apk"
+
+      # ----------------------------------------------------------------------
+      # ----------------------------------------------------------------------
+      # ----------------------------------------------------------------------
+
+      - name: Dump GitHub context
+        if: success() || failure() || cancelled()
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        if: success() || failure() || cancelled()
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        if: success() || failure() || cancelled()
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        if: success() || failure() || cancelled()
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        if: success() || failure() || cancelled()
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        if: success() || failure() || cancelled()
+        run: echo '${{ toJSON(matrix) }}'
+
+      # ----------------------------------------------------------------------
+      # ----------------------------------------------------------------------
+      # ----------------------------------------------------------------------
