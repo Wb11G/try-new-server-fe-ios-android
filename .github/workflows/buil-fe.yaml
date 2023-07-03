@@ -34,7 +34,7 @@ jobs:
           flutter-version: '3.x'  # Change this to match your Flutter version
 
       - name: Build Android App
-        run: flutter build android --release 
+        run: flutter build apk --release
 
       # - name: Send APK to Backend
       #   run: |
