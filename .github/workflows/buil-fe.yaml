@@ -1,4 +1,4 @@
-name: 🚀 Build App by wahyu
+name: 🚀 Build App by wahyu 
 
 # Controls when the workflow will run
 on:
@@ -18,7 +18,7 @@ jobs:
   app-deploy:
     name: 🚚 FrontEnd-Mobile (Build iOS) - coba aja dulu
     # runs-on: server-mac-wahyu2
-    runs-on: server-lenovo-wahyu
+    runs-on: server-mac-wahyu2
     steps:
       - name: 🎉 Get latest code
         uses: actions/checkout@v2
@@ -33,12 +33,8 @@ jobs:
         with:
           flutter-version: '3.x'  # Change this to match your Flutter version
 
-      - name: Set up Android SDK
-        run: |
-          echo 'export ANDROID_SDK_ROOT=$HOME/Android/sdk' >> $GITHUB_ENV
-
       - name: Build Android App
-        run: flutter build apk --release
+        run: flutter build android --release 
 
       # - name: Send APK to Backend
       #   run: |
