@@ -17,7 +17,7 @@ env:
 jobs:
   app-deploy:
     name: 🚚 FrontEnd-Mobile (Build iOS) - coba aja dulu
-    runs-on: server-wahyu-coba
+    runs-on: server-linux-wahyu
     steps:
       - name: 🎉 Get latest code
         uses: actions/checkout@v2
