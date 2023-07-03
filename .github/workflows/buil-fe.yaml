@@ -28,16 +28,14 @@ jobs:
         with:
           java-version: 11
 
-      - name: Set up Android SDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-          distribution: 'sdk'
-
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.x'  # Change this to match your Flutter version
+
+      - name: Set up Android SDK
+        run: |
+          echo 'export ANDROID_SDK_ROOT=$HOME/Android/sdk' >> $GITHUB_ENV
 
       - name: Build Android App
         run: flutter build apk --release
