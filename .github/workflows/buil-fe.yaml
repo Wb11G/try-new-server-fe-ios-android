@@ -34,7 +34,7 @@ jobs:
           flutter-version: '3.x'  # Change this to match your Flutter version
 
       - name: Build Android App
-        run: flutter build apk 
+        run: flutter build apk --disable-telemetry
 
       # - name: Send APK to Backend
       #   run: |
