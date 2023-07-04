@@ -23,10 +23,10 @@ jobs:
       - name: 🎉 Get latest code
         uses: actions/checkout@v2
 
-      - name: ✅ Set up JDK 12
+      - name: ✅ Set up JDK 11
         uses: actions/setup-java@v1
         with:
-          java-version: 12
+          java-version: 11
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
