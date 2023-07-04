@@ -33,6 +33,11 @@ jobs:
         with:
           flutter-version: '3.x'  # Change this to match your Flutter version
 
+      - name: Set up Android SDK
+        run: |
+          echo 'export ANDROID_SDK_ROOT=$HOME/Android/sdk' >> $GITHUB_ENV
+          yes | sdkmanager --licenses
+
       - name: Build Android App
         run: flutter build apk 
 
